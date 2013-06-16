@@ -57,8 +57,9 @@
                     <li id="help-nav"><a href="#"> Help </a></li>
                     <li></li>
                 </ul>
-                <!--ul class="nav pull-right">
-                    <div class="btn-group">
+                <ul class="nav pull-right">
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Sign Up</a></li>
                         {% comment %}
                         {% if not request.user.is_authenticated %}
                             {% for name in social_auth.backends.oauth2 %}
@@ -68,8 +69,7 @@
                           <a href="{% url logout %}" class="btn">Logout</a>
                         {% endif %}
                         {% endcomment %}
-                    </div>
-                </ul-->
+                </ul>
             </div>
         </div>
     </div>

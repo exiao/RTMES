@@ -1,74 +1,61 @@
 {% extends 'base.html' %}
 
 {% block css %}
-    .navbar {
-          margin-bottom: 20px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-
-
+.navbar {
+    transition: box-shadow 0.2s linear;
+border-bottom: 1px solid rgba(0,0,0,0.2);
     }
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-      <div style="padding-bottom:75px;" class="row-fluid">
-      </div>
-      <div class="row-fluid">
-        <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Biology</li>
-              <li class="list-item active"><a href="#">Ecosystem</a></li>
-              <li class="lisRt-item">Neurobiology</li>
-              <li class="list-item">Microbiology</li>
-              <li class="nav-header">Chemistry</li>
-              <li class="nav-header">Physics</li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
-          <div class="hero-unit">
-            <h1>Battling Nemo!</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-            <a href="#" class="btn btn-primary btn-large">Learn more »</a><p></p>
+    <div id="feature-tabs" style="cursor: pointer;" class="docked">
+      <div alt="spend" class="tab active" style="cursor: pointer;">Biology</div>
+      <div alt="save" class="tab " style="cursor: pointer;">Chemistry</div>
+      <div alt="pay" class="tab" style="cursor: pointer;">Physics</div>
+      <div alt="learn" class="tab" style="cursor: pointer;">Neuroscience</div>
+    </div>
+
+     <div id="myCarousel" class="carousel slide" data-pause="remove">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="/static/img/finding-nemo.png" class="jetstrap-highlighted">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1 class="">Battling Nemo!</h1>
+              <p class="lead">Let the games begin! </p>
+              <a class="btn btn-custom-blue btn-large" href="#">Click to Play!</a>
+            </div>
           </div>
-          <div class="row-fluid" style="padding-bottom:20px">
-            <div class="span4">
-              <div class="game-box">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p></p>
-              </div>
-            </div><!--/span-->
-            <div class="span4">
-              <div class="game-box">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p></p>
-              </div>
-            </div><!--/span-->
-            <div class="span4">
-              <div class="game-box">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p></p>
-              </div>
-            </div><!--/span-->
-          </div><!--/row-->
-          <div class="row-fluid">
-            <!--/span-->
-            <!--/span-->
-            <!--/span-->
-          </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
-    
-      <!--hr class="jetstrap-highlighted"-->
-    
-    </div><!--/.fluid-container-->
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container marketing">
+
+      <div class="row">
+        <div class="span4">
+          <img class="img-circle" src="/static/img/fish.png">
+          <h2 class="">Ecosystems</h2>
+          <p class="">Each student plays a critical role at the same
+                  time to see how their actions as "Nemo" or the "Shark" affect the environment.</p>
+          <p class=""></p>
+        </div><!-- /.span4 -->
+        <div class="span4">
+          <img class="img-circle" src="/static/img/algae.png">
+          <h2 class="">Biology</h2>
+          <p class="">Not only are they learning by doing, they are learning with each other.</p>
+          <p class=""></p>
+        </div><!-- /.span4 -->
+        <div class="span4">
+          <img class="img-circle" src="/static/img/shark.png">
+          <h2>Food Chain</h2>
+          <p class="">Learn about the prey and predator relationship in aquatic ecosystems.</p>
+          <p class=""></p>
+        </div>
+      </div>
+    </div>
 
     {% endblock %}
 {% block post_js %}
