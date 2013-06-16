@@ -323,7 +323,7 @@ textarea.readonly {
     padding-top: 105px;
     background-image: url("/static/img/finding-nemo.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
     color: white;
  }
 
