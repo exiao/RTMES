@@ -44,8 +44,13 @@ padding-right: 20px;
 /* Offset the responsive button for proper vertical alignment */
 .navbar .btn-navbar {
     margin-top: 10px;
+    /*background-image: linear-gradient(to bottom, #517da4, #81a3c1);*/
+    background-image:inherit;
+    background-color: #517da4;
 }
-
+.navbar .btn-navbar:hover {
+    background-color:#81a3c1 !important;
+}
 
 
 
@@ -110,6 +115,13 @@ padding-right: 20px;
     text-decoration: none;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0);
 }
+  .nav-collapse .nav > li > a:hover,
+  .nav-collapse .nav > li > a:focus,
+  .nav-collapse .dropdown-menu a:hover,
+  .nav-collapse .dropdown-menu a:focus {
+    background-color:#81a3c1 !important;
+}
+
 
 .navbar .nav .active > a,
 .navbar .nav .active > a:hover {
@@ -315,8 +327,12 @@ textarea.readonly {
     color: white;
  }
 
-.hero-unit h1 {
-    padding-left:40%;
+.hero-unit h1, .hero-unit p {
+    padding-left:70%;
+}
+
+.hero-unit a {
+    margin-left: 70%;
 }
 
 .sidebar-nav {
