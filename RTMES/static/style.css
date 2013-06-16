@@ -128,7 +128,7 @@ html {
 }
 
 .container , .container-fluid{
-    width: 980px;
+    /*width: 980px;*/
 }
 
 .center {

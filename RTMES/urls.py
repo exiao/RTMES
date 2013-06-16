@@ -8,7 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     #url(r'^$', 'RTMES.views.home', name='home'),
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name="index"),
+    url(r'^$', TemplateView.as_view(template_name='index1.html'), name="index"),
 
     # url(r'^RTMES/', include('RTMES.foo.urls')),
 
