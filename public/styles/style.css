@@ -1,0 +1,16 @@
+.noselect {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+body {
+  background-color: #fafafa;
+  font-family: 'source code pro', monospace;
+  overflow: hidden;
+  color: #646464;
+  margin: 0;
+}
+#pcanvas {
+  padding: 0px;
+  margin: 0px auto;
+}
