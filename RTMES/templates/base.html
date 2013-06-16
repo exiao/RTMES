@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>
     {% block title %}
-        SCOPED
+        RTMES
     {% endblock %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +14,6 @@
     <!-- Le styles -->
       {% load static %}
     <link href="{% get_static_prefix %}css/bootstrap.css" rel="stylesheet">
-    <style>
-      .navbar {
-    margin-bottom: 0px;
-    }
-    </style>
     <link href="{% get_static_prefix %}css/bootstrap-responsive.css" rel="stylesheet">
     <link href="{% get_static_prefix %}style.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,200,400,500,600' rel='stylesheet' type='text/css'>
@@ -31,11 +26,7 @@
       </script>
     <![endif]-->
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
 
     <style type="text/css">
         {% block css %}
@@ -46,17 +37,17 @@
     {% endblock %}
   </head>
   <body>
-<div class="navbar">
+  
+
+<div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <div class="nav-collapse">
-                <a class="brand" href="/">
-                    SCOPED
-                </a>
+
                 <ul class="nav">
-                    <li id="home-nav"><a href="/"> Home </a></li>
-                    <li id="about-nav"><a href="#"> About </a></li>
-                    <li id="help-nav"><a href="#"> Help </a></li>
+                    <li id="home-nav"><a href="/"> RTMES </a></li>
+                    <li id="games-nav"><a href="/games"> Games </a></li>
+                    <li id="about-nav"><a href="/"> About </a></li>
                 </ul>
                 <ul class="nav pull-right">
                     <div class="btn-group">
@@ -75,13 +66,46 @@
         </div>
     </div>
 </div>
+
+
     {% block content %}
     {% endblock %}
 
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>© 2013 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-      </footer>
+
+<div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="span3" style="width: 180px">
+                  <h4>Features</h4>
+                </div>
+                <div class="span3" style="width: 180px">
+                    <h4>More Info &amp; Resources</h4>
+               	</div>
+                <div class="span3" style="width: 180px">
+
+                    <h4>Help &amp; Support</h4>
+
+                </div>
+                <div class="span4">
+
+                    <a href="/signup" class="btn btn-success btn-large" style="font-weight: bold; color: #fff; width: 300px; font-size: 15px">Sign Up For Your Free 14-Day Trial</a>
+
+                    <br><br>
+
+                    © 2013 Awio Web Services LLC. All rights reserved.
+
+                    <br>
+                    
+                    <a href="/terms">Terms of Service</a>                    &nbsp;•&nbsp;
+                    <a href="/privacy">Privacy Policy</a>                    &nbsp;•&nbsp;
+                    <a href="mailto:hello@improvely.com">Contact Us</a>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
     </script>
