@@ -68,12 +68,12 @@
       <hr class="featurette-divider">
     
       <div class="featurette">
-        <img class="featurette-image pull-right" src="http://twitter.github.com/bootstrap/assets/img/examples/browser-icon-chrome.png">
-        <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <img class="featurette-image pull-right" src="/static/img/fish-game-screen-f.png">
+        <h2 class="featurette-heading">Collaborative Learning. <span class="muted">Like you've never seen before.</span></h2>
+        <p class="lead">Play with your entire class at once and learn what it's like to shape and impact a larger ecosystem.</p>
       </div>
     
- 
+      <hr class="featurette-divider">
     
     </div>
     
@@ -89,50 +89,8 @@
         padding-bottom: 40px;
         color: #5a5a5a;
       }
-      
-      
-      
-      /* CUSTOMIZE THE NAVBAR
--------------------------------------------------- */
-      
-      /* Special class on .container surrounding .navbar, used for positioning it into place. */
-      .navbar-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        margin-top: 20px;
-        margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-      }
-      
-      /* Remove border and change up box shadow for more contrast */
-      .navbar .navbar-inner {
-        border: 0;
-        -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-        -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-        box-shadow: 0 2px 10px rgba(0,0,0,.25);
-      }
-      
-      /* Downsize the brand/project name a bit */
-      .navbar .brand {
-        padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-        font-size: 16px;
-        font-weight: bold;
-        text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-      }
-      
-      /* Navbar links: increase padding for taller navbar */
-      .navbar .nav > li > a {
-        padding: 15px 20px;
-      }
-      
-      /* Offset the responsive button for proper vertical alignment */
-      .navbar .btn-navbar {
-        margin-top: 10px;
-      }
-      
-      
+
+
       
       /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -319,4 +277,12 @@
       }
       
     </style>
+{% endblock %}
+
+{% block post_js %}
+<script type="text/javascript">
+  $(document).ready( function() {
+    $("#home-nav").addClass("active")
+  })
+</script>
 {% endblock %}

@@ -27,6 +27,28 @@ padding-right: 20px;
 }
 */
 
+      /* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 20px;
+    margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+
+/* Offset the responsive button for proper vertical alignment */
+.navbar .btn-navbar {
+    margin-top: 10px;
+}
+
+
+
+
 .navbar-inner {
     min-width: 940px;
 
@@ -39,9 +61,13 @@ padding-right: 20px;
     border-bottom-style: solid;
     border-bottom-width: 1px;
 
-    -webkit-box-shadow: none;
+     border: 0;
+     -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+     -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+     box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    /*-webkit-box-shadow: none;
     -moz-box-shadow: none;
-    box-shadow: none;
+    box-shadow: none;*/
 
 }
 
@@ -62,7 +88,10 @@ padding-right: 20px;
 
 .navbar .brand {
     color: #858585;
-    padding: 10px 12px;
+    padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
 }
 
 .navbar .nav > li > a {
@@ -71,7 +100,7 @@ padding-right: 20px;
     color: #eeeeee;
     text-decoration: none;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0);
-    padding: 10px 9.3px;
+    padding: 15px 20px;
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -86,7 +115,7 @@ padding-right: 20px;
 .navbar .nav .active > a:hover {
     color: #ffffff;
     text-decoration: none;
-    background-color: #c0c0c0;
+    background-color: #517da4;
 }
 
 .nav-list .nav-header {
@@ -130,8 +159,12 @@ body2
     margin-bottom: 30px;
 }
 
-.page-content p, h2, h4{
+.page-content p, .page-content h2, .page-content h4{
     padding: 0 30px 0 30px;
+}
+
+.game-box {
+    text-align: center;
 }
 
 .page-stretch {
@@ -251,7 +284,7 @@ h2 {
 }
 
 .brand {
-  font-family: 'Oregano', cursive;
+  font-family: 'Source Sans Pro';
 }
 
 .points-title, .points-title:hover {
@@ -275,6 +308,19 @@ textarea.readonly {
 }
 
 .hero-unit {
+    padding-top: 60px;
+ }
+
+.hero-unit h1 {
+    padding-left:40%;
+}
+
+.sidebar-nav {
+    min-width: 135px;
+    min-height: 480px;
+}
+/*
+.hero-unit {
   padding: 60px;
   margin-bottom: 30px;
   -webkit-border-radius: 6px;
@@ -286,7 +332,7 @@ textarea.readonly {
     padding: 55px 620px 0 0;
     margin-right: -80px;
     margin-bottom: 0;
-    background: url('/static/images/banner.jpg') right bottom no-repeat; }
+    background: url('/static/img/banner.jpg') right bottom no-repeat; }
 .hero-unit h1 {
       font-size: 52px;
       line-height: 1.1;
@@ -302,6 +348,8 @@ textarea.readonly {
 .hero-unit p {
       margin: 1em 0;
       font-size: 20px; }
+
+*/
 
 #index-banner {
   background: url('/static/images/banner8.jpg');

@@ -9,7 +9,9 @@ urlpatterns = patterns('',
     # Examples:
     #url(r'^$', 'RTMES.views.home', name='home'),
     url(r'^$', TemplateView.as_view(template_name='index.html'), name="index"),
-    url(r'^games$', TemplateView.as_view(template_name='games.html'), name="games"),
+    url(r'^about/$', TemplateView.as_view(template_name='about.html'), name="about"),
+    url(r'^help/$', TemplateView.as_view(template_name='help.html'), name="help"),
+    url(r'^games/$', TemplateView.as_view(template_name='games.html'), name="games"),
     # url(r'^RTMES/', include('RTMES.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
