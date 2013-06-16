@@ -19,6 +19,7 @@ var server = http.createServer(app);
 var io = sio.listen(server, {log: false});
 
 var players = {};
+var algea = [];
 
 var setMaster = function(excludeId){
 	var clients = io.sockets.clients();
@@ -52,11 +53,12 @@ var connect = function(socket){
 		players[socket.id].y = msg.y;
 	});	
 
-	socket.on('increasehealth', function (msg) {
-		var s = io.sockets.sockets[msg.id];
+	socket.on('increasehealth', function (id) {
+		var s = io.sockets.sockets[id];
 		if(s){
+			console.log('increasehealth' + s);
 			console.log('increasehealth');
-			s.emit('increasehealth', msg.amount);
+			s.emit('increasehealth', '');
 		}
 	});		
 
@@ -65,7 +67,17 @@ var connect = function(socket){
 		socket.broadcast.emit('removeplayer', {id: socket.id});
 		console.log(players);
 		setMaster(socket.id);
-	});		
+	});	
+
+
+	socket.on('getalgae', function(data, fn){
+		fn(algea);
+	});	
+
+	socket.on('setalgae', function(data){
+		algea = data;
+		socket.broadcast.emit('setalgae', data);
+	});	
 
 	socket.on('removeplayer', function (id) {
 		delete players[id];

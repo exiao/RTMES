@@ -69,9 +69,28 @@ Comm.removePlayer = function(id){
 	socket.emit('removeplayer', id);
 }
 
-Comm.increaseHealth = function(id, amount){
+Comm.increaseHealth = function(id){
 	console.log('increasehealth');
-	socket.emit('increasehealth', {id: id, amount:amount});
+	socket.emit('increasehealth', id);
+}
+
+Comm.getAlgae = function(){
+	socket.emit('getalgae', '', function(data){
+		pjs.setAlgae(data);
+	});
+}
+
+Comm.setAlgae = function(algae){
+	var arr = [];
+	for(var i=0; i<algae.length; i++){
+		var curr = algae[i];
+		arr.push({
+			x: curr.pos.x,
+			y: curr.pos.y,
+			id: curr.id
+		});
+	}
+	socket.emit('setalgae', arr);
 }
 
 socket.on('update', function(data){
@@ -82,6 +101,7 @@ socket.on('update', function(data){
 
 socket.on('setmaster', function(data){
 	Comm.isMaster = true;
+	pjs.makeAlgae();
 	console.log('isMaster');
 });
 
@@ -90,13 +110,17 @@ socket.on('newplayer', function(data){
 	pjs.addPlayer(data.id);
 });
 
+socket.on('setalgae', function(data){
+	pjs.setAlgae(data);
+});
+
 socket.on('removeplayer', function(data){
 	pjs.removePlayer(data);
 });
 
 socket.on('increasehealth', function(data){
 	console.log('increasehealth');
-	pjs.increaseHealth(data);
+	pjs.increaseHealth();
 });
 
 socket.on('id', function(id){
@@ -104,4 +128,6 @@ socket.on('id', function(id){
  	pjs.setPlayerId(id);
 });
 
+
 Comm.setup();
+Comm.getAlgae();
