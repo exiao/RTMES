@@ -1,7 +1,7 @@
 
 var play = function(pjs) {
 
-	var bkg = pjs.color(197,224,220);
+	var bkg = pjs.color(245,255,245);
 	var gray = pjs.color(100,30);
 
 	var players = {};
@@ -185,6 +185,7 @@ var play = function(pjs) {
 
 			this.rot = 0;
 			this.tailRot = 0;
+			this.lastAngle = 0;
 		},
 
 		sync: function(){
@@ -243,10 +244,18 @@ var play = function(pjs) {
 			}
 
 			if(angle){
+				var rem = angle % 2*Math.PI;
+				var lastRem = this.lastAngle % 2*Math.PI;
+
+				var diff = Math.atan2(Math.sin(angle-this.lastAngle), Math.cos(angle-this.lastAngle));
+
+				angle = this.lastAngle + diff;
+
+				this.lastAngle = angle;
 				this.rot += (angle - this.rot)*.1;
 				this.tailRot += (angle - this.tailRot)*.07;
 			}
-
+			
 			pjs.pushMatrix();
 			pjs.translate(this.pos.x, this.pos.y);
 			pjs.rotate(this.rot);
@@ -325,14 +334,14 @@ var play = function(pjs) {
 				Comm.increaseHealth(this.id);
 			}
 
-			this.timeToReproduce = 1;
+			//this.timeToReproduce = 1;
 			
 
 		},
 
 		tick: function(){
 
-			this.tryReproduce();
+			//this.tryReproduce();
 			
 			var len = players.length;
 			for(var i=0; i<len; i++){
@@ -386,7 +395,7 @@ var play = function(pjs) {
 						Comm.increaseHealth(this.id);
 					}
 
-					this.timeToReproduce = 1;
+					//this.timeToReproduce = 1;
 
 					setTimeout(function(){
 						var pos = new pjs.PVector(pjs.random(pjs.width/5, pjs.width*4/5), pjs.random(pjs.height/5, pjs.height*4/5));
