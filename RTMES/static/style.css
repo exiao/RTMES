@@ -308,7 +308,11 @@ textarea.readonly {
 }
 
 .hero-unit {
-    padding-top: 60px;
+    padding-top: 105px;
+    background-image: url("/static/img/finding-nemo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
  }
 
 .hero-unit h1 {
