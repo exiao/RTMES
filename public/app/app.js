@@ -1,17 +1,18 @@
 
 var play = function(pjs) {
 
-	var bkg = pjs.color(167,219,216);
+	var bkg = pjs.color(197,224,220);
+	var gray = pjs.color(100,30);
 
 	var players = {};
 
 	var playerRad = 30;
 	var playerFinSize = new pjs.PVector(10,20);
 
-	var playerSpeed = 1;
+	var playerSpeed = 1.2;
 
-	var predatorCol = pjs.color(217,91,67);
-	var preyCol = pjs.color(83,119,122);
+	var predatorCol = pjs.color(255,156,91);
+	var preyCol = pjs.color(135,189,177);
 
 	var player, players;
 
@@ -27,15 +28,7 @@ var play = function(pjs) {
 
 		players = [];
 
-		var pos = new pjs.PVector(pjs.random(pjs.width/5, pjs.width*4/5), pjs.random(pjs.height/5, pjs.height*4/5));
-
-		if(Math.random() < .5)
-			player = new Predator(pos.x, pos.y, '');
-		else
-			player = new Prey(pos.x, pos.y, '');
-
-		Comm.registerSelf(player.pos.x, player.pos.y, player.type);
-		players.push(player);
+		pjs.respawn();
 	};
 
 	pjs.mousePressed = function(){
@@ -57,6 +50,9 @@ var play = function(pjs) {
 		
 		for(var i=0; i<players.length; i++){
 			if(players[i].remove){
+				if(players[i] == player){
+					notifyRespawn(10);
+				}
 				players.splice(i, 1);
 				i--;
 				console.log(players);
@@ -109,6 +105,7 @@ var play = function(pjs) {
 		console.log(player.id);
 
 		if(data.id === player.id){
+			notifyRespawn(10);
 			console.log("I got removed");
 		}
 
@@ -120,10 +117,24 @@ var play = function(pjs) {
 		player.health += amount;
 	}
 
+	pjs.respawn = function(){
+		var pos = new pjs.PVector(pjs.random(pjs.width/5, pjs.width*4/5), pjs.random(pjs.height/5, pjs.height*4/5));
+
+		if(Math.random() < .5)
+			player = new Predator(pos.x, pos.y, '');
+		else
+			player = new Prey(pos.x, pos.y, '');
+
+		Comm.registerSelf(player.pos.x, player.pos.y, player.type);
+		players.push(player);
+	};
+
 	var displayHealth = function(){
 		if(player.health > 0){
+			pjs.fill(gray);
+			pjs.rect(10,10,pjs.width/4+10, 50+10);
 			pjs.fill(predatorCol);
-			pjs.rect(10,10,player.health*pjs.width/4, 50);		
+			pjs.rect(15,15,player.health*pjs.width/4, 50);		
 		}
 			
 	}
@@ -138,6 +149,7 @@ var play = function(pjs) {
 			this.health = 1;
 
 			this.rot = 0;
+			this.tailRot = 0;
 		},
 
 		sync: function(){
@@ -165,11 +177,7 @@ var play = function(pjs) {
 				this.tick();
 			}
 
-			if(this == player){
-				pjs.fill(100,50);
-				pjs.ellipse(this.pos.x, this.pos.y, playerRad*2 + 15, playerRad*2 + 15);
-			}
-			pjs.fill(this.col);
+			
 
 			var diff = pjs.PVector.sub(this.pos, lastPos);
 			var angle = Math.atan(diff.y / diff.x);
@@ -182,13 +190,18 @@ var play = function(pjs) {
 
 			if(angle){
 				this.rot += (angle - this.rot)*.1;
+				this.tailRot += (angle - this.tailRot)*.07;
 			}
-
-			console.log(this.rot);
 
 			pjs.pushMatrix();
 			pjs.translate(this.pos.x, this.pos.y);
 			pjs.rotate(this.rot);
+
+			if(this == player){
+				pjs.fill(gray);
+				pjs.ellipse(0, 0, playerRad*2 + 15, playerRad*2 + 15);
+			}
+			pjs.fill(this.col);
 
 			pjs.triangle(0 - playerRad, 0, 
 				0 - playerFinSize.x - playerRad, 0 - playerFinSize.y,
@@ -198,6 +211,8 @@ var play = function(pjs) {
 				0 - playerFinSize.x + playerRad, 0 -playerFinSize.y,
 				0 + playerFinSize.x + playerRad, 0 - playerFinSize.y);
 
+			pjs.rotate(this.tailRot - this.rot);
+
 			pjs.triangle(0, 0 - playerRad + playerFinSize.y, 
 				0 - playerFinSize.x*3/2, 0 - playerRad - playerFinSize.y/2,
 				0 + playerFinSize.x*3/2, 0 - playerRad - playerFinSize.y/2);
@@ -206,7 +221,7 @@ var play = function(pjs) {
 
 			pjs.popMatrix();
 		}
-	})
+	});
 
 	var Predator = Class.create(Player, {
 		initialize: function($super, x, y, id){
@@ -246,7 +261,7 @@ var play = function(pjs) {
 		tickAlways: function(){
 			this.health -= .0005;
 
-			if(this.health <= 0){
+			if(this.health <= 0 && !this.remove){
 				Comm.removePlayer(this.id);
 				this.remove = true;
 			}	

@@ -9,6 +9,50 @@ Comm.isMaster = false;
 
 Comm.id = '';
 
+var predatorEl = document.getElementById('predator-count');
+var preyEl = document.getElementById('prey-count');
+var notifyEl = document.getElementById('notification');
+
+var notifyRespawn = function(secs){
+	var count = (secs)*1000;
+	notify('You died.<br />Respawn in ' + (Math.floor(count/1000)) + ' seconds');
+	var intv = setInterval(function(){
+		count -= 1000;
+
+		notify('You died.<br />Respawn in ' + (Math.floor(count/1000)) + ' seconds');
+		if(count <= 0){
+			clearInterval(intv);
+			pjs.respawn();
+			notify('');
+		}
+		
+	},1000);
+};
+
+var notify = function(msg){
+	notifyEl.innerHTML = msg;
+}
+
+var generateStats = function(){
+	var ids = Object.keys(playersData);
+	var pred = 0,
+		prey = 0;
+
+	for(var i=0; i<ids.length; i++){
+		var id = ids[i];
+		var curr = playersData[id];
+		if(curr.type === 'Predator'){
+			pred++;
+		}else{
+			prey++;
+		}
+
+	}
+
+	predatorEl.innerHTML = pred;
+	preyEl.innerHTML = prey;
+}
+
 Comm.setup = function(){
 	
 };
@@ -33,6 +77,7 @@ Comm.increaseHealth = function(id, amount){
 socket.on('update', function(data){
 	playersData = data;
 	pjs.updateAll();
+	generateStats();
 });
 
 socket.on('setmaster', function(data){
